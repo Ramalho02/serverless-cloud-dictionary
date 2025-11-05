@@ -1,4 +1,3 @@
-// App.jsx - Funcionalidade refinada e case-insensitive
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
@@ -11,35 +10,36 @@ const App = () => {
   const apiUrl = 'https://72l2zisur6.execute-api.us-east-1.amazonaws.com/dev';
 
   const handleSearch = async () => {
-    setError(''); // limpa erro anterior
+    setError('');
+    setTerms([]);
 
     if (!searchTerm.trim()) {
       setError('Por favor, digite uma palavra para buscar.');
-      setTerms([]);
       return;
     }
 
     try {
-      const url = `${apiUrl}/get-definition?term=${encodeURIComponent(searchTerm)}`;
-      const response = await axios.get(url);
+      const url = `${apiUrl}/get-definition`;
+      const response = await axios.get(url); // Supondo que a API retorna todos os termos
 
-      if (!response.data || Object.keys(response.data).length === 0) {
-        setTerms([]);
+      if (!response.data || response.data.length === 0) {
         setError('Nenhum termo encontrado.');
         return;
       }
 
-      // Transformar todas as palavras em minúsculas para comparação
-      const fetchedTerm = {
-        term: response.data.term,
-        definition: response.data.definition
-      };
+      // Filtra os termos de forma case-insensitive
+      const filtered = response.data.filter(item =>
+        item.term.toLowerCase() === searchTerm.toLowerCase()
+      );
 
-      setTerms([fetchedTerm]);
+      if (filtered.length === 0) {
+        setError('Nenhum termo encontrado.');
+      } else {
+        setTerms(filtered);
+      }
     } catch (err) {
       console.error(err);
       setError('Erro ao buscar o termo. Tente novamente.');
-      setTerms([]);
     }
   };
 
