@@ -1,145 +1,114 @@
-/* App.css - Modern Dark Gradient + Glass Cards */
+/* App.css */
 body {
-  background: linear-gradient(135deg, #0a0f1f 0%, #1b2735 50%, #283e51 100%);
-  font-family: 'Poppins', sans-serif;
-  color: #e0e0e0;
-  min-height: 100vh;
   margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  background-image: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  color: #f2f2f2;
+  min-height: 100vh;
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  padding: 40px 20px;
+  text-align: center;
+  padding: 30px;
+  backdrop-filter: blur(6px);
 }
 
-/* Header */
 .App-header {
-  background: rgba(20, 30, 48, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 30px 20px;
-  color: #ffffff;
-  width: 100%;
-  max-width: 800px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 }
 
 .App-header h1 {
-  font-size: 2.5rem;
+  font-size: 2.5em;
+  font-weight: 700;
   margin-bottom: 20px;
-  color: #a0c4ff;
-  letter-spacing: 1px;
-}
-
-/* Input */
-input {
-  padding: 14px 20px;
-  margin-top: 15px;
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  font-size: 16px;
-  transition: all 0.3s ease;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-input:focus {
-  outline: none;
-  border-color: #88bde6;
-  box-shadow: 0 0 12px rgba(136, 189, 230, 0.5);
-}
-
-/* Button */
-button {
-  padding: 12px 26px;
-  margin-top: 20px;
-  background: linear-gradient(135deg, #88bde6, #649fcf);
-  color: #121212;
+input[type='text'] {
+  padding: 10px 14px;
+  border-radius: 8px;
   border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 16px;
+  outline: none;
+  width: 250px;
+  font-size: 1em;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transition: 0.3s;
+}
+
+input[type='text']::placeholder {
+  color: #ddd;
+}
+
+input[type='text']:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background-color: #00bcd4;
+  color: white;
   font-weight: 600;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  margin-left: 10px; /* 👈 espaçamento leve entre o botão e a barra */
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
 }
 
 button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(136, 189, 230, 0.4);
+  background-color: #0097a7;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
 }
 
-/* Cards grid */
+.error-message {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.4);
+  color: #ffbaba;
+  padding: 10px;
+  margin: 20px auto;
+  width: fit-content;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
 .dictionary-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 30px;
-  width: 100%;
-  max-width: 1000px;
-  padding-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
 }
 
-/* Card style */
 .card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  padding: 20px;
+  width: 280px;
+  backdrop-filter: blur(5px);
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(136, 189, 230, 0.3);
-  border: 1px solid rgba(136, 189, 230, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
 }
 
 .card h3 {
-  font-size: 1.6rem;
+  color: #00e5ff;
   margin-bottom: 10px;
-  color: #a0c4ff;
-  font-weight: 600;
-  text-shadow: 0 0 5px rgba(136, 189, 230, 0.3);
+  font-size: 1.3em;
 }
 
 .card p {
-  font-size: 1rem;
-  color: #d0d0d0;
-  line-height: 1.6;
-}
-
-/* Error message */
-.error-message {
-  margin-top: 20px;
-  color: #ff4d4f;
-  font-weight: 500;
-  font-size: 1.1rem;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .App-header {
-    padding: 20px;
-  }
-  input {
-    max-width: 100%;
-  }
-  .dictionary-container {
-    padding: 0 10px;
-  }
+  font-size: 0.95em;
+  color: #eee;
+  line-height: 1.5em;
 }
