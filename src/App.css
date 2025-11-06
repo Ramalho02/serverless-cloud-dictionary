@@ -1,11 +1,9 @@
-/* App.css – Visual tech moderno e profissional */
+/* App.css – Gradiente elegante e tech */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   color: #e0e0e0;
-  background: radial-gradient(circle at top left, #0a0f1c, #0b0b0b 80%);
-  background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
-  background-size: cover;
+  background: linear-gradient(135deg, #0a0f1c, #101b2d, #1b2d40);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -18,7 +16,7 @@ body {
 }
 
 .App-header {
-  background: linear-gradient(135deg, rgba(20, 30, 48, 0.9), rgba(36, 59, 85, 0.8));
+  background: rgba(25, 35, 50, 0.85);
   padding: 35px;
   border-radius: 18px;
   box-shadow: 0 10px 25px rgba(0, 255, 200, 0.08);
