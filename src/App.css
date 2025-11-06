@@ -1,8 +1,10 @@
-/* App.css - Dark elegante e sutil */
+/* App.css - Modern Dark Gradient + Glass Cards */
 body {
-  background-color: #121212;
+  background: linear-gradient(135deg, #0a0f1f 0%, #1b2735 50%, #283e51 100%);
   font-family: 'Poppins', sans-serif;
   color: #e0e0e0;
+  min-height: 100vh;
+  margin: 0;
 }
 
 .App {
@@ -13,14 +15,17 @@ body {
   padding: 40px 20px;
 }
 
+/* Header */
 .App-header {
-  background: #1f1f1f;
+  background: rgba(20, 30, 48, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 30px 20px;
   color: #ffffff;
   width: 100%;
   max-width: 800px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   text-align: center;
   margin-bottom: 40px;
 }
@@ -28,17 +33,19 @@ body {
 .App-header h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #a0c4ff; /* Azul discreto */
+  color: #a0c4ff;
+  letter-spacing: 1px;
 }
 
+/* Input */
 input {
   padding: 14px 20px;
   margin-top: 15px;
   width: 100%;
   max-width: 400px;
-  border-radius: 10px;
-  border: 2px solid #555;
-  background-color: #1e1e1e;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
   font-size: 16px;
   transition: all 0.3s ease;
@@ -47,60 +54,70 @@ input {
 input:focus {
   outline: none;
   border-color: #88bde6;
-  box-shadow: 0 0 10px rgba(136, 189, 230, 0.4);
+  box-shadow: 0 0 12px rgba(136, 189, 230, 0.5);
 }
 
+/* Button */
 button {
-  padding: 12px 24px;
+  padding: 12px 26px;
   margin-top: 20px;
-  background-color: #88bde6; /* Azul suave */
+  background: linear-gradient(135deg, #88bde6, #649fcf);
   color: #121212;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-  background-color: #649fcf;
   transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(136, 189, 230, 0.4);
 }
 
+/* Cards grid */
 .dictionary-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
   width: 100%;
   max-width: 1000px;
+  padding-bottom: 40px;
 }
 
+/* Card style */
 .card {
-  background-color: #1e1e1e;
-  padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(136,189,230,0.3);
+  box-shadow: 0 10px 30px rgba(136, 189, 230, 0.3);
+  border: 1px solid rgba(136, 189, 230, 0.3);
 }
 
 .card h3 {
   font-size: 1.6rem;
   margin-bottom: 10px;
-  color: #88bde6;
+  color: #a0c4ff;
   font-weight: 600;
+  text-shadow: 0 0 5px rgba(136, 189, 230, 0.3);
 }
 
 .card p {
   font-size: 1rem;
-  color: #ccc;
+  color: #d0d0d0;
   line-height: 1.6;
 }
 
+/* Error message */
 .error-message {
   margin-top: 20px;
   color: #ff4d4f;
@@ -114,6 +131,7 @@ button:hover {
   to { opacity: 1; }
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .App-header {
     padding: 20px;
