@@ -27,9 +27,9 @@ const App = () => {
         return;
       }
 
-      // Filtra os termos de forma case-insensitive
+      // Filtra os termos de forma case-insensitive e por inclusão parcial
       const filtered = response.data.filter(item =>
-        item.term.toLowerCase() === searchTerm.toLowerCase()
+        item.term.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
       if (filtered.length === 0) {
