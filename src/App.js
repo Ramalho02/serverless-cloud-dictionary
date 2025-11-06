@@ -7,6 +7,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState('');
 
+  // Your API base URL
   const apiUrl = 'https://72l2zisur6.execute-api.us-east-1.amazonaws.com/dev';
 
   const handleSearch = async () => {
@@ -19,26 +20,21 @@ const App = () => {
     }
 
     try {
-      const url = `${apiUrl}/get-definition`;
-      const response = await axios.get(url); // Supondo que a API retorna todos os termos
+      // Now we send the word to the API as a query parameter
+      const url = `${apiUrl}/get-definition?term=${encodeURIComponent(searchTerm)}`;
+      const response = await axios.get(url);
 
+      // Check response format
       if (!response.data || response.data.length === 0) {
         setError('Nenhum termo encontrado.');
         return;
       }
 
-      // Filtra os termos de forma case-insensitive e por inclusão parcial
-      const filtered = response.data.filter(item =>
-        item.term.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-
-      if (filtered.length === 0) {
-        setError('Nenhum termo encontrado.');
-      } else {
-        setTerms(filtered);
-      }
+      // Guarantee compatibility (in case the API returns a single object or a list)
+      const results = Array.isArray(response.data) ? response.data : [response.data];
+      setTerms(results);
     } catch (err) {
-      console.error(err);
+      console.error('Erro ao buscar o termo:', err);
       setError('Erro ao buscar o termo. Tente novamente.');
     }
   };
@@ -60,10 +56,10 @@ const App = () => {
       {error && <div className="error-message">{error}</div>}
 
       <div className="dictionary-container">
-        {terms.map((term) => (
-          <div key={term.term} className="card">
-            <h3>{term.term}</h3>
-            <p>{term.definition}</p>
+        {terms.map((term, index) => (
+          <div key={index} className="card">
+            <h3>{term.term || 'Sem título'}</h3>
+            <p>{term.definition || 'Sem definição disponível.'}</p>
           </div>
         ))}
       </div>
