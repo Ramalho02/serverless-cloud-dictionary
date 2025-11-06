@@ -7,7 +7,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState('');
 
-  // Your API base URL
+  // API base URL
   const apiUrl = 'https://72l2zisur6.execute-api.us-east-1.amazonaws.com/dev';
 
   const handleSearch = async () => {
@@ -20,19 +20,25 @@ const App = () => {
     }
 
     try {
-      // Now we send the word to the API as a query parameter
-      const url = `${apiUrl}/get-definition?term=${encodeURIComponent(searchTerm)}`;
+      // Get ALL terms from API
+      const url = `${apiUrl}/get-definition`;
       const response = await axios.get(url);
 
-      // Check response format
       if (!response.data || response.data.length === 0) {
         setError('Nenhum termo encontrado.');
         return;
       }
 
-      // Guarantee compatibility (in case the API returns a single object or a list)
-      const results = Array.isArray(response.data) ? response.data : [response.data];
-      setTerms(results);
+      // Case-insensitive filtering
+      const filtered = response.data.filter(item =>
+        item.term.toLowerCase() === searchTerm.toLowerCase()
+      );
+
+      if (filtered.length === 0) {
+        setError('Nenhum termo encontrado.');
+      } else {
+        setTerms(filtered);
+      }
     } catch (err) {
       console.error('Erro ao buscar o termo:', err);
       setError('Erro ao buscar o termo. Tente novamente.');
