@@ -13,7 +13,9 @@ const App = () => {
     setError('');
     setTerms([]);
 
-    if (!searchTerm.trim()) {
+    const cleanedSearch = searchTerm.trim();
+
+    if (!cleanedSearch) {
       setError('Por favor, digite uma palavra para buscar.');
       return;
     }
@@ -27,9 +29,10 @@ const App = () => {
         return;
       }
 
-      // Busca sensível a maiúsculas/minúsculas
+      // ✅ Case-insensitive and space-safe filter
       const filtered = response.data.filter(item =>
-        item.term === searchTerm
+        item.term &&
+        item.term.toLowerCase().trim() === cleanedSearch.toLowerCase()
       );
 
       if (filtered.length === 0) {
