@@ -7,6 +7,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState('');
 
+  // 👉 Coloque aqui o endpoint da sua API Gateway
   const apiUrl = 'https://72l2zisur6.execute-api.us-east-1.amazonaws.com/dev';
 
   const handleSearch = async () => {
@@ -21,25 +22,23 @@ const App = () => {
     }
 
     try {
-      const url = `${apiUrl}/get-definition`;
+      // ✅ Envia o termo como parâmetro da URL
+      const url = `${apiUrl}/get-definition?term=${encodeURIComponent(cleanedSearch)}`;
       const response = await axios.get(url);
 
-      if (!response.data || response.data.length === 0) {
+      // O Lambda retorna um único item, não um array
+      if (!response.data || !response.data.definition) {
         setError('Nenhum termo encontrado.');
         return;
       }
 
-      // ✅ Case-insensitive and space-safe filter
-      const filtered = response.data.filter(item =>
-        item.term &&
-        item.term.toLowerCase().trim() === cleanedSearch.toLowerCase()
-      );
-
-      if (filtered.length === 0) {
-        setError('Nenhum termo encontrado.');
-      } else {
-        setTerms(filtered);
-      }
+      // ✅ Armazena o resultado em formato de lista
+      setTerms([
+        {
+          term: response.data.term,
+          definition: response.data.definition,
+        },
+      ]);
     } catch (err) {
       console.error(err);
       setError('Erro ao buscar o termo. Tente novamente.');
